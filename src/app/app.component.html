@@ -1,0 +1,102 @@
+                <!-- Practice -->
+<!-- <app-structural-directive></app-structural-directive>
+{{title | UpperCasePipe}}
+{{1+3}}
+{{Name() | UpperCasePipe}}
+<div *ngFor="let item of UserList">
+    {{item.EmployeeName}}
+    {{item.EmployeeAddress}}
+</div> -->
+
+<div class="container">
+    <h3 class="d-flex justify-content-center mb-5 mt-4 text-white">CRUD Application</h3>
+
+<!-- Button trigger modal -->
+<div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-primary  m-2" 
+     data-toggle="modal" data-target="#exampleModal" (click)="addClick()"
+     data-backdrop="static" data-keyboard="false">
+         Add New Record
+    </button>
+</div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-dark table-hover">
+            <thead>
+                <tr>
+                  <th scope="col">Employee ID</th>
+                  <th scope="col">Employee Name</th>
+                  <th scope="col">EmployeeSalary</th>
+                  <th scope="col">EmployeeAddress</th>
+                  <th scope="col">EmployeeCity</th>
+                  <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of EmployeeList">
+                    <th scope="row">{{item.EmployeeID}}</th>
+                    <td>{{item.EmployeeName}}</td>
+                    <td>{{item.EmployeeSalary}}</td>
+                    <td>{{item.EmployeeAddress}}</td>
+                    <td>{{item.EmployeeCity}}</td>
+                    <td><button type="button" class="btn btn-light mr-4"
+                        data-toggle="modal" data-target="#exampleModal" (click)="editClick(item)"
+                        data-backdrop="static" data-keyboard="false">
+                            Edit
+                        </button>
+                        <button type="button" class="btn btn-light m-1" (click)="deleteClick(item)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+ 
+  
+<!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"  *ngIf="ActivateAddEdit">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Employee ID</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="FormObj.EmployeeID" placeholder="Enter Employee ID">
+                </div>
+                <label class="col-sm-2 col-form-label">Employee Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="FormObj.EmployeeName" placeholder="Enter Employee Name">
+                </div>
+                <label class="col-sm-2 col-form-label">Employee Salary</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="FormObj.EmployeeSalary" placeholder="Enter Employee Salary">
+                </div>
+                <label class="col-sm-2 col-form-label">Employee Address</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="FormObj.EmployeeAddress" placeholder="Enter Employee Address">
+                </div>
+                <label class="col-sm-2 col-form-label">Employee City</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" [(ngModel)]="FormObj.EmployeeCity" placeholder="Enter Employee City">
+                </div>
+                <button (click)="addEmployee()" *ngIf="addflag" class="btn btn-primary">
+                    Add
+                </button>
+                <button (click)="updateEmployee()" *ngIf="updateflag" class="btn btn-primary">
+                    Update
+                </button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
